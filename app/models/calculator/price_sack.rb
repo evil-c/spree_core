@@ -16,9 +16,9 @@ class Calculator::PriceSack < Calculator
   # as object we always get line items, as calculable we have Coupon, ShippingMethod
   def compute(object)
     if object.is_a?(Array)
-      base = object.map{ |o| o.respond_to?(:amount) ? o.amount : o.to_d }.sum
+      base = object.map{ |o| o.respond_to?(:amount) ? o.amount : o.to_f }.sum
     else
-      base = object.respond_to?(:amount) ? object.amount : object.to_d
+      base = object.respond_to?(:amount) ? object.amount : object.to_f
     end
 
     if base >= self.preferred_minimal_amount
